@@ -2,8 +2,8 @@
     "taskDefinitionArn": "arn:aws:ecs:us-east-2:339712999516:task-definition/thdp-td:1",
     "containerDefinitions": [
         {
-            "name": "storefront",
-            "image": "public.ecr.aws/o5d7c2o1/thdp/storefront",
+            "name": "kawasori-client",
+            "image": "kawasori-client:latest",
             "cpu": 256,
             "memory": 512,
             "memoryReservation": 512,
@@ -16,7 +16,116 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "REACT_APP_WEBSITE_NAME",
+                    "value": "Kawasori"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_DESCRIPTION",
+                    "value": "Welcome to Kawasori, your ultimate destination for authentic kawaii products and accessories. We curate the most adorable Japanese-inspired items, from stationery and plushies to home decor and fashion accessories. Bringing cuteness and joy to your everyday life!"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_SHORT_DESCRIPTION",
+                    "value": "Your kawaii wonderland for the cutest Japanese-inspired products and accessories."
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_META_KEYWORDS",
+                    "value": "kawaii, cute, Japanese, anime, stationery, plushies, accessories, kawaii shop, Japanese style, cute products, kawaii fashion, kawaii home decor, anime merchandise"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_LOGO",
+                    "value": "../assets/website/logo.png"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_CONTACT",
+                    "value": "contact@example.com"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_ADDRESS",
+                    "value": "123 Main St, Anytown, USA"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_PHONE",
+                    "value": "7089650250"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_EMAIL",
+                    "value": "contact@example.com"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_BUSINESS_HOURS",
+                    "value": "Monday-Friday: 9:00 AM - 6:00 PM, Saturday: 10:00 AM - 4:00 PM, Sunday: Closed"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_CUSTOMER_SERVICE_HOURS",
+                    "value": "Monday-Friday: 8:00 AM - 7:00 PM EST"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_HOME_DESCRIPTION",
+                    "value": "Discover the world of kawaii at Kawasori. From adorable stationery to cute plushies, we bring you the most charming Japanese-inspired products to brighten your day."
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_ABOUT_DESCRIPTION",
+                    "value": "Learn about Kawasori's passion for bringing authentic kawaii culture to you through our carefully selected collection of cute and quality Japanese-inspired products."
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_PRODUCTS_DESCRIPTION",
+                    "value": "Explore our kawaii wonderland of cute products, including adorable stationery, plushies, accessories, and home decor. Each item is selected to bring joy and cuteness to your life."
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_CONTACT_DESCRIPTION",
+                    "value": "Connect with Kawasori! We're here to help you find the perfect kawaii products and share in your love for all things cute."
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_ANNOUNCEMENT",
+                    "value": "Free Shipping on Orders Over $35! 🌸"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_FACEBOOK",
+                    "value": "https://facebook.com/thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_INSTAGRAM",
+                    "value": "https://instagram.com/thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_TWITTER",
+                    "value": "https://twitter.com/happydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_YOUTUBE",
+                    "value": "https://youtube.com/thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_LINKEDIN",
+                    "value": "https://linkedin.com/company/thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_PINTEREST",
+                    "value": "https://pinterest.com/thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_WEBSITE_TIKTOK",
+                    "value": "https://tiktok.com/@thehappydogplace"
+                },
+                {
+                    "name": "REACT_APP_API_URL",
+                    "value": "https://api.kawasori.com/api"
+                },
+                {
+                    "name": "REACT_APP_API_VERSION",
+                    "value": "v1"
+                },
+                {
+                    "name": "REACT_APP_NODE_ENV",
+                    "value": "production"
+                },
+                {
+                    "name": "PORT",
+                    "value": "3000"
+                }
+            ],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
@@ -24,19 +133,29 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/thdp-td",
+                    "awslogs-group": "/ecs/kawasori-client",
                     "mode": "non-blocking",
                     "awslogs-create-group": "true",
                     "max-buffer-size": "25m",
-                    "awslogs-region": "us-east-2",
+                    "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
             },
-            "systemControls": []
+            "systemControls": [],
+            "healthCheck": {
+                "command": [
+                    "CMD-SHELL",
+                    "curl -f http://localhost:3000/ || exit 1"
+                ],
+                "interval": 30,
+                "timeout": 5,
+                "retries": 3,
+                "startPeriod": 60
+            }
         }
     ],
-    "family": "thdp-td",
+    "family": "kawasori-client",
     "taskRoleArn": "arn:aws:iam::339712999516:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::339712999516:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -88,5 +207,14 @@
     },
     "registeredAt": "2024-09-07T10:20:55.541Z",
     "registeredBy": "arn:aws:iam::339712999516:root",
-    "tags": []
+    "tags": [
+        {
+            "key": "Environment",
+            "value": "Production"
+        },
+        {
+            "key": "Application",
+            "value": "Kawasori-Client"
+        }
+    ]
 }

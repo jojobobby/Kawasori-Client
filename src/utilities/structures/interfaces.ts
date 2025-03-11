@@ -19,6 +19,13 @@ interface WebsiteDetails {
     phone: string;
     email: string;
     social: Socials;
+    colors: Colors;
+}
+
+interface Colors {
+    primary: string;
+    secondary: string;
+    tertiary: string;
 }
 
 export {

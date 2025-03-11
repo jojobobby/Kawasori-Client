@@ -17,6 +17,11 @@ const Website: WebsiteDetails = {
         pinterest: process.env.REACT_APP_WEBSITE_PINTEREST || null,
         tiktok: process.env.REACT_APP_WEBSITE_TIKTOK || null,
     },
+    colors: {
+        primary: "#000000",
+        secondary: "#000000",
+        tertiary: "#000000",
+    }
 }
 
 export {

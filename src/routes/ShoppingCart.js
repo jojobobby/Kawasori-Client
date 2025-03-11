@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { useCart } from '../contexts/CartContext';
 import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 import toast from 'react-hot-toast';

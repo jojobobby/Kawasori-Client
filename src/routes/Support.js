@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { Phone, Mail, MessageCircle, HelpCircle, Search, ChevronDown, ChevronUp } from 'lucide-react';
 
 const FAQItem = ({ question, answer }) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { useCart } from '../contexts/CartContext';
 import { Star } from 'lucide-react';
 import toast from 'react-hot-toast';

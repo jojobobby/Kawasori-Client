@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { Shield, FileText, Scale, Clock, Globe } from 'lucide-react';
 
 const TermsOfService = () => {

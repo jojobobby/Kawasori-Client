@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useCart } from '../contexts/CartContext';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { ChevronRight, ChevronLeft, CreditCard, Truck, Check } from 'lucide-react';
 
 const CheckoutPage = () => {

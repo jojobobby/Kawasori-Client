@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 import { Package, Truck, Home, CheckCircle, MapPin, Calendar, Clock, AlertTriangle } from 'lucide-react';
 
 const TrackPackage = () => {

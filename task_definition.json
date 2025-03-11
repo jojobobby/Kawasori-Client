@@ -2,8 +2,8 @@
     "taskDefinitionArn": "arn:aws:ecs:us-east-2:339712999516:task-definition/thdp-td:1",
     "containerDefinitions": [
         {
-            "name": "kawasori-client",
-            "image": "kawasori-client:latest",
+            "name": "storefront",
+            "image": "public.ecr.aws/o5d7c2o1/thdp/storefront",
             "cpu": 256,
             "memory": 512,
             "memoryReservation": 512,
@@ -133,29 +133,19 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/kawasori-client",
+                    "awslogs-group": "/ecs/thdp-td",
                     "mode": "non-blocking",
                     "awslogs-create-group": "true",
                     "max-buffer-size": "25m",
-                    "awslogs-region": "us-east-1",
+                    "awslogs-region": "us-east-2",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
             },
-            "systemControls": [],
-            "healthCheck": {
-                "command": [
-                    "CMD-SHELL",
-                    "curl -f http://localhost:3000/ || exit 1"
-                ],
-                "interval": 30,
-                "timeout": 5,
-                "retries": 3,
-                "startPeriod": 60
-            }
+            "systemControls": []
         }
     ],
-    "family": "kawasori-client",
+    "family": "thdp-td",
     "taskRoleArn": "arn:aws:iam::339712999516:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::339712999516:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
@@ -207,14 +197,5 @@
     },
     "registeredAt": "2024-09-07T10:20:55.541Z",
     "registeredBy": "arn:aws:iam::339712999516:root",
-    "tags": [
-        {
-            "key": "Environment",
-            "value": "Production"
-        },
-        {
-            "key": "Application",
-            "value": "Kawasori-Client"
-        }
-    ]
+    "tags": []
 }

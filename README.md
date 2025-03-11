@@ -110,14 +110,38 @@ docker build -t happy-dog-place-client .
 docker-compose up
 ```
 
-## Environment Configuration
+## Environment Variables
 
-1. Create a `.env` file in the root directory
-2. Add necessary environment variables:
-   ```
-   REACT_APP_API_URL=your_api_url
-   REACT_APP_ENV=development
-   ```
+The application uses the following environment variables:
+
+### Website Details
+- `WEBSITE_NAME`: Name of the website
+- `WEBSITE_DESCRIPTION`: Website description
+- `WEBSITE_LOGO`: URL to website logo
+- `WEBSITE_CONTACT`: Contact information
+- `WEBSITE_ADDRESS`: Physical address
+- `WEBSITE_PHONE`: Contact phone number
+- `WEBSITE_EMAIL`: Contact email address
+
+### Social Media
+- `WEBSITE_FACEBOOK`: Facebook page URL
+- `WEBSITE_INSTAGRAM`: Instagram profile URL
+- `WEBSITE_TWITTER`: Twitter profile URL
+- `WEBSITE_YOUTUBE`: YouTube channel URL
+- `WEBSITE_LINKEDIN`: LinkedIn company page URL
+- `WEBSITE_PINTEREST`: Pinterest profile URL
+- `WEBSITE_TIKTOK`: TikTok profile URL
+
+### API Configuration
+- `REACT_APP_API_URL`: Backend API URL
+- `REACT_APP_ENV`: Environment (development/production)
+
+To set up your environment:
+1. Copy `.env.example` to `.env`
+2. Fill in the values in `.env`
+3. Restart the development server
+
+Note: Never commit the `.env` file to version control. The `.env.example` file serves as a template.
 
 ## Build and Deployment
 

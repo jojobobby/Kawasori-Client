@@ -1,40 +1,26 @@
-# Build stage
-FROM node:18-alpine AS builder
+#grabbing a node version 21 image from docker hub
+FROM node:21
 
-# Enable BuildKit cache
-ARG BUILDKIT_INLINE_CACHE=1
-
-# Set working directory
+#create an app directory and set it as the working directory
 WORKDIR /app
 
-# Copy package files
+#copy every "package" file from the current directory to the working directory (package.json, package-lock.json)
 COPY package*.json ./
 
-# Install dependencies with cache
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci
+#install all the dependencies
+RUN yarn install
 
-# Copy source
+#install serve globally (to ensure it can be ran anywhere) to serve the compiled files
+RUN yarn global add serve
+
+#copy from the current directory to the working directory in the container
 COPY . .
 
-# Build application
-RUN npm run build
+#Build to create the compiled files servable from the ./build directory
+RUN yarn run build
 
-# Production stage
-FROM node:18-alpine AS runner
+#expose the port the app will be running on
+EXPOSE 3000
 
-WORKDIR /app
-
-# Copy built assets
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/package*.json ./
-
-# Install production dependencies only
-RUN --mount=type=cache,target=/root/.npm \
-    npm ci --only=production
-
-# Set environment variables
-ENV NODE_ENV=production
-
-# Start application
-CMD ["npm", "start"]
+#Commands to run the application, serves the compiled files from the ./build directory -s is for single page applications
+ENTRYPOINT ["yarn", "serve", "-s", "build", "-l", "tcp://0.0.0.0:3000"]
